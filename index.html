@@ -1,171 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="GitHub Test Website - Interactive Animated Flower Project">
-  <title>GitHub Test Website - Interactive Flower</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="A simple test website for GitHub and GitHub Pages.">
+  <title>GitHub Test Website</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f6f8fa;
+      color: #24292f;
+      padding: 20px;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 48px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      max-width: 480px;
+      width: 100%;
+      border: 1px solid #d0d7de;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+      color: #1f2328;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #57606a;
+      line-height: 1.5;
+    }
+  </style>
 </head>
+
 <body>
-  <!-- Floating Petals Canvas -->
-  <canvas id="particlesCanvas"></canvas>
-
-  <!-- Ambient Ambient Glow -->
-  <div class="ambient-glow"></div>
-
-  <div class="container">
-    <!-- Top Navigation / Status Header -->
-    <header class="top-bar">
-      <div class="brand-badge">
-        <svg class="github-icon" viewBox="0 0 16 16" width="24" height="24" aria-hidden="true">
-          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-        </svg>
-        <span>GitHub Test Website</span>
-      </div>
-
-      <div class="controls-group">
-        <div class="status-indicator">
-          <span class="status-dot"></span>
-          <span>Online & Working</span>
-        </div>
-        <button id="themeBtn" class="theme-btn" title="Switch Theme">🎨 Themes</button>
-        <button id="soundToggleBtn" class="sound-toggle-btn" title="Toggle Sound Effect">🔊</button>
-      </div>
-    </header>
-
-    <!-- Main Hero Card -->
-    <main class="hero-card">
-      <div class="hero-content">
-        <span class="tagline">✨ Project Showcase</span>
-        <h1>Hello, GitHub! <span class="wave-hand">👋</span></h1>
-        <p class="subtitle">
-          My GitHub project is working successfully. Featuring modern CSS styling, dynamic JavaScript interactions, and an animated blooming flower!
-        </p>
-
-        <div class="action-buttons">
-          <button id="bloomBtn" class="btn-primary">
-            <span>🌸 Water & Bloom</span>
-          </button>
-          <button id="plantGardenBtn" class="btn-secondary">
-            <span>🌿 Plant Garden</span>
-          </button>
-        </div>
-
-        <!-- Color Palette Chooser -->
-        <div class="palette-picker">
-          <span style="font-size: 0.8rem; color: var(--text-muted); margin-right: 4px;">Flower Color:</span>
-          <button class="color-dot-btn active" data-color="sakura" title="Sakura Rose"></button>
-          <button class="color-dot-btn" data-color="sunflower" title="Golden Sunflower"></button>
-          <button class="color-dot-btn" data-color="lotus" title="Cyan Lotus"></button>
-          <button class="color-dot-btn" data-color="emerald" title="Purple Blossom"></button>
-        </div>
-      </div>
-
-      <!-- Animated Flower Stage -->
-      <div class="flower-stage-container" id="flowerStage" title="Click anywhere to water & bloom!">
-        <div class="stage-water-splash" id="waterSplash">💧✨</div>
-
-        <!-- SVG Blooming Flower -->
-        <svg class="flower-art" viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
-          <!-- Soil Base Mound -->
-          <ellipse cx="100" cy="255" rx="55" ry="12" fill="rgba(0, 0, 0, 0.25)" />
-          
-          <!-- Stem -->
-          <path class="flower-stem" d="M100,250 C100,200 110,160 100,90" />
-
-          <!-- Left Leaf -->
-          <g class="flower-leaf-left">
-            <path d="M104,185 C80,175 60,185 55,200 C75,205 95,195 104,185 Z" />
-            <path d="M102,187 C80,183 65,193 58,199" stroke="rgba(255,255,255,0.4)" stroke-width="1" fill="none" />
-          </g>
-
-          <!-- Right Leaf -->
-          <g class="flower-leaf-right">
-            <path d="M100,150 C125,140 145,150 150,165 C130,170 110,160 100,150 Z" />
-            <path d="M102,152 C125,148 140,158 147,164" stroke="rgba(255,255,255,0.4)" stroke-width="1" fill="none" />
-          </g>
-
-          <!-- Blooming Flower Head -->
-          <g class="flower-head">
-            <!-- Outer Petals (8 Radial Petals) -->
-            <g class="petal-outer">
-              <ellipse cx="100" cy="50" rx="14" ry="26" />
-              <ellipse cx="100" cy="130" rx="14" ry="26" />
-              <ellipse cx="60" cy="90" rx="26" ry="14" />
-              <ellipse cx="140" cy="90" rx="26" ry="14" />
-              <ellipse cx="72" cy="62" rx="15" ry="25" transform="rotate(-45 72 62)" />
-              <ellipse cx="128" cy="62" rx="15" ry="25" transform="rotate(45 128 62)" />
-              <ellipse cx="72" cy="118" rx="15" ry="25" transform="rotate(45 72 118)" />
-              <ellipse cx="128" cy="118" rx="15" ry="25" transform="rotate(-45 128 118)" />
-            </g>
-
-            <!-- Inner Petals -->
-            <g class="petal-inner">
-              <circle cx="100" cy="70" r="16" />
-              <circle cx="100" cy="110" r="16" />
-              <circle cx="80" cy="90" r="16" />
-              <circle cx="120" cy="90" r="16" />
-              <circle cx="86" cy="76" r="15" />
-              <circle cx="114" cy="76" r="15" />
-              <circle cx="86" cy="104" r="15" />
-              <circle cx="114" cy="104" r="15" />
-            </g>
-
-            <!-- Center Core Glow -->
-            <circle class="flower-center-disc" cx="100" cy="90" r="18" />
-
-            <!-- Golden Pollen Sparkles -->
-            <circle class="pollen-dot" cx="95" cy="85" r="2.5" />
-            <circle class="pollen-dot" cx="105" cy="85" r="2" />
-            <circle class="pollen-dot" cx="100" cy="95" r="2.5" />
-            <circle class="pollen-dot" cx="92" cy="92" r="1.8" />
-            <circle class="pollen-dot" cx="108" cy="92" r="1.8" />
-          </g>
-        </svg>
-
-        <span class="stage-tip">👆 Click to water & bloom • Bloomed: <b id="bloomCount" style="color: var(--accent-color);">1</b>x</span>
-      </div>
-    </main>
-
-    <!-- Feature Cards Grid -->
-    <section class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon-wrapper">🌺</div>
-        <h2 class="feature-title">Dynamic Flower Animation</h2>
-        <p class="feature-desc">Animated SVG & CSS keyframes creating smooth petal blooming, swaying stem, and ambient floating petals.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon-wrapper">⚡</div>
-        <h2 class="feature-title">JavaScript Interactivity</h2>
-        <p class="feature-desc">Interactive watering triggers, Web Audio chime synthesis, background particle physics, and live theme palette switching.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon-wrapper">🚀</div>
-        <h2 class="feature-title">GitHub Pages Ready</h2>
-        <p class="feature-desc">Fully optimized, lightweight, zero-dependency codebase ready for immediate one-click GitHub Pages deployment.</p>
-      </div>
-    </section>
-
-    <!-- Repository Clone Snippet -->
-    <div class="clone-bar">
-      <div class="clone-code">
-        <code>git clone https://github.com/manjumouna11-dot/Small-project-.git</code>
-      </div>
-      <button id="copyBtn" class="copy-btn">📋 Copy</button>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-      <p>Created for testing GitHub & GitHub Pages • Built with ❤️, HTML, CSS & JavaScript</p>
-    </footer>
-  </div>
-
-  <script src="script.js"></script>
+  <main class="card">
+    <h1>Hello, Manju Eshwari👋</h1>
+    <p>My GitHub project is working successfully.</p>
+  </main>
 </body>
+
 </html>
